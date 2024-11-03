@@ -2,10 +2,10 @@
 
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { signIn, signOut } from 'next-auth/react'
-import { Session } from 'next-auth' // Corrected import for Session
+import { signIn } from 'next-auth/react'
+import { Session } from 'next-auth'
 import Link from 'next/link'
-import Image from 'next/image' // Import Image from next/image
+import Image from 'next/image'
 import React from 'react'
 
 type HeaderProps = {
@@ -15,16 +15,16 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ session }) => {
   return (
     <header className='border-b p-4 flex items-center justify-between'>
-      <Link 
+      <Link
          href={'/'}
          className='text-blue-600 font-bold text-2xl'>
             Marketplace
-       </Link>
-        <nav className='flex gap-4 *:rounded *:px-2 *:py-1'>
-            <button className='border border-blue-600 text-blue-600 inline-flex gap-1 items-center px-4 mr-4'>
+      </Link>
+      <nav className='flex gap-4 *:rounded *:px-2 '>
+            <Link href={'/new'} className='border border-blue-600 text-blue-600 inline-flex gap-1 items-center px-4 mr-4'>
                 <FontAwesomeIcon icon={faPlus} className='h-4'/>
                 <span> Post Product</span>
-            </button>
+            </Link>
            {!session?.user ? (
             <>
               <span className='border-r'></span>
@@ -45,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ session }) => {
                    height={36} />
             </Link>
            )}
-        </nav>
+      </nav>
     </header>
   )
 }
