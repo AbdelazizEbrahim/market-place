@@ -2,7 +2,7 @@
 
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { signIn } from 'next-auth/react'
+import { signIn, signOut } from 'next-auth/react'
 import { Session } from 'next-auth'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -36,14 +36,21 @@ const Header: React.FC<HeaderProps> = ({ session }) => {
               </button>
             </>
            ) : (
-            <Link href={'/account'} className=''>
-                <Image 
-                   className='rounded-md'
-                   src={session.user.image as string} 
-                   alt={'avatar'} 
-                   width={36} 
-                   height={36} />
-            </Link>
+            <>
+              <button 
+                  onClick={() => signOut()}
+                  className='bg-blue-600 text-white border-0 px-6'>
+                  Logout
+              </button>
+              <Link href={'/account'} className=''>
+                  <Image 
+                    className='rounded-md'
+                    src={session.user.image as string} 
+                    alt={'avatar'} 
+                    width={36} 
+                    height={36} />
+              </Link>
+            </>
            )}
       </nav>
     </header>

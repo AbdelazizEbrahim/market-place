@@ -9,3 +9,7 @@ input[type='text'], input[type='number'], select, textarea {
 form label {
   @apply text-xs text-gray-600 font-bold uppercase block mt-4 mb-1
 }
+
+label.upload-btn input[type = 'file'] {
+  @apply hidden;
+}
