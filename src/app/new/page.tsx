@@ -1,13 +1,21 @@
 'use client'
 
+import AdTextInput from '@/components/AdTextInput'
 import UploadArea from '@/components/UploadArea'
 import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { UploadResponse } from 'imagekit/dist/libs/interfaces'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import MapPicker from 'react-google-map-picker'
 
 const NewProductPage = () => {
     const [files, setFiles] = useState<UploadResponse[]>([]);
+    const [showMap, setShowMap] = useState(false);
+
+    useEffect(() => {
+        setShowMap(true);
+    }, [])
+
   return (
     <form action={''} className='max-w-xl mx-auto grid grid-cols-2 gap-12'>
         <div className='grow pt-8'>
@@ -21,7 +29,13 @@ const NewProductPage = () => {
                     <span>Share Current Location</span>
                 </button>
                 <div className='mt-2 bg-gray-100 p-4 min-h-12 rounded text-gray-400 text-center'>
-                    Google map
+                    {showMap && (
+                        <MapPicker
+                             apiKey={'AIzaSyA134BG7_TC2DH1hgisVWQX5sSD7-PAXak'}
+                             defaultLocation={{ lat: 11.5902, lng: 37.3833 }}
+                         />
+                    )}
+
                 </div>
             </div>
 
@@ -29,26 +43,7 @@ const NewProductPage = () => {
 
         <div className='grow pt-2'>
 
-            <label htmlFor='titleIn'>Title</label>
-            <input id='titleIn' type='text' placeholder='Title'/>
-
-            <label htmlFor='priceIn'>Price</label>
-            <input id='priceIn' type='number' placeholder='Price'/>
-
-            <label htmlFor='categoryIn'>Category</label>
-            <select id='categoryIn' defaultValue=''>
-                <option disabled value=''>Select Category</option>
-                <option value='car'>🚗 Cars</option>
-                <option value='electronics'>📱 Electronics</option>
-                <option value='properties'>🏡 Properties</option>
-            </select>
-
-
-            <label htmlFor='descriptionIn'>Description </label>
-            <textarea name='' id='descriptionIn' placeholder='Description' defaultValue=''></textarea>
-
-            <label htmlFor='contactIn'>Contact</label>
-            <textarea name='' id='contactIn' placeholder='Mobile: +251900000000' defaultValue=''></textarea>
+            <AdTextInput/>
 
             <button className='mt-2 bg-blue-600 text-white px-4 py-2 rounded'>
                 Publish
