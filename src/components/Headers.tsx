@@ -14,7 +14,7 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ session }) => {
   return (
-    <header className='border-b p-4 flex items-center justify-between'>
+    <header className='h-16 border-b p-4 flex items-center justify-between'>
       <Link
          href={'/'}
          className='text-blue-600 font-bold text-2xl'>
