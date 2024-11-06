@@ -6,14 +6,19 @@ import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { UploadResponse } from 'imagekit/dist/libs/interfaces'
 import React, { useState } from 'react'
+import { createAd } from '../actions/adActions'
+import SubmitButton from '@/components/SubmitButton'
+import { useRouter } from 'next/navigation'
 
 const NewProductPage = () => {
     const [files, setFiles] = useState<UploadResponse[]>([]);
+    const router = useRouter();
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>, formData: FormData) {
-        event.preventDefault(); // Prevent the default form submission behavior
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>, formData: FormData) {
+        event.preventDefault(); 
         formData.set('files', JSON.stringify(files));
-        console.log(Object.fromEntries(formData)); // Check the console output
+        const result = await createAd(formData);
+        router.push('/ad/'+result._id);
     }
 
   return (
@@ -31,16 +36,10 @@ const NewProductPage = () => {
             </div>
 
         </div>
-
         <div className='grow pt-2'>
-
             <AdTextInput/>
-
-            <button type="submit" className='mt-2 bg-blue-600 text-white px-4 py-2 rounded'>
-                Publish
-            </button>
+            <SubmitButton>Publish</SubmitButton>
         </div>
-        
     </form>
   )
 }

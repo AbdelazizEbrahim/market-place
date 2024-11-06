@@ -12,7 +12,6 @@ export default function Uploader(props:IKUploadProps){
               authenticator={async () => {
                 const response = await fetch('/api/imagekit/auth')
                 const data = await response.json();
-                console.log("data: ",data)
                 return data;
               }}
             >
