@@ -14,13 +14,13 @@ type Props = {
 export default function UploadArea({files,setFiles}:Props) {
   const [isUploading, setIsUploading] = useState(false);
   return (
-    <div className="bg-gray-100 p-4 rounded">
+    <div className="bg-gray-100 p-4 rounded ">
       <h2 className="text-center text-xs text-gray-400 uppercase font-bold">
-        Add photos your product
+        Add photos of your product
       </h2>
       <div className="flex flex-col">
-        <FontAwesomeIcon icon={faImage} className="h-24 text-gray-300"/>
-        <label
+      <FontAwesomeIcon icon={faImage} className="text-8xl text-gray-300" />
+      <label
           className={
             'upload-btn mt-2 border px-4 py-2 rounded inline-flex gap-1 items-center justify-center '
             + (
