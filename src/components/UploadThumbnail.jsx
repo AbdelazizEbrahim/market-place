@@ -1,6 +1,7 @@
 import MyImage from "./MyImage";
 import React from "react";
 
+
 export default function UploadThumbnail({ file, onClick }) {
   function handleClick(ev) {
     if (onClick) {
