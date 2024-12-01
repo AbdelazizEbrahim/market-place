@@ -3,9 +3,9 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import DeleteAdButton from "@/components/DeleteButton";
 import Gallery from "@/components/Gallery";
-import { connect } from "@/libs/helper";
+import { connect, formatDate, formatMoney } from "@/libs/helper";
 import { AdModel } from "@/models/Ad";
-import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
@@ -42,12 +42,18 @@ export default async function SingleAdPage(args: Props) {
                     <DeleteAdButton id={adDoc._id} />
                 </div>
                 )}
+                <label>Price</label>
+                <p>{formatMoney(adDoc.price)}</p>
                 <label className="">Category: </label>
                 <p className="capitalize">{adDoc.category}</p>
                 <label>Description: </label>
                 <p className="text-sm capitalize">{adDoc.description}</p>
                 <label>Contact: </label>
                 <p className="text-sm capitalize">{adDoc.contact}</p>
+                <p className="mt-4 text-xs text-gray-400">
+                    Posted: {formatDate(adDoc.createdAt)}<br />
+                    Last update: {formatDate(adDoc.updatedAt)}
+                </p>
             </div>
         </div>
     )

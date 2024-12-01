@@ -12,4 +12,12 @@ export const categories = [
     {key:'properties', label:'Properties', icon: faHome},
   ];
 
+  export function formatMoney(amount: number): string {
+    return '$' + Intl.NumberFormat('US', {currency: 'USD'}).format(amount);
+  }
+  
+  export function formatDate(date: Date):string {
+    return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+  }
+
 
